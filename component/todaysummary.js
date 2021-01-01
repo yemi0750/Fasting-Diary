@@ -35,6 +35,15 @@ const styles = StyleSheet.create({
     paddingRight: 5,
     backgroundColor: '#cdd9f1'
   },
+  goal: {
+    flex: 1,
+    marginLeft: 15,
+    marginRight: 15,
+    padding: 5,
+    backgroundColor: '#cdd9f1',
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+  },
   text: {
     fontSize: 17,
   },
@@ -64,43 +73,6 @@ const styles = StyleSheet.create({
 });
 
 class TodaySummary extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      date: this.props.date, 
-      dateString: this.props.dateString, 
-      jang: this.props.jang, 
-      goal: this.props.goal, 
-
-      weight: this.props.weight,
-      BP: this.props.BP,
-      BS: this.props.BS,
-      NOW: this.props.NOW,
-      GT: this.props.GT,
-      PW: this.props.PW,
-      EG: this.props.EG,
-      CG: this.props.CG,
-      WG: this.props.WG,
-      BPP: this.props.BPP,
-      HH: this.props.HH,
-      DB: this.props.DB,
-      BB: this.props.BB,
-      MM: this.props.MM,
-      temp: this.props.temp,
-
-      Nisi: this.props.Nisi,
-      Doenjang : this.props.Doenjang,
-      Miso : this.props.Miso,
-      Chitosan : this.props.Chitosan, 
-      Power : this.props.Power,
-      Blossom : this.props.Blossom,
-      Candy : this.props.Candy,
-      Biwoom : this.props.Biwoom,
-      Space : this.props.Space,
-
-      memo : this.props.memo,
-    }
-  }
 
   render() {
     const { navigation } = this.props;
@@ -109,56 +81,57 @@ class TodaySummary extends Component {
       <ScrollView style={styles.content}>
         <View style={styles.contenttext}>
           <View style={styles.date}>
-            <Text style={styles.textBold}>{this.state.date}</Text>
-            <Text style={styles.textBold}>{this.state.dateString}</Text>
+            <Text style={styles.textBold}>{this.props.pressedDate}</Text>
+            <Text style={styles.textBold}>{this.props.pressedDateString}</Text>
           </View>
           <View style={styles.goal}>
-            <Text style={styles.text}>{this.state.goal}</Text>
+            <Text style={styles.text}>{this.props.goal}</Text>
           </View>
           <Text style={styles.title}>오늘 나의 수치는?</Text>
           <View style={styles.threeCardGroup}>
-            <Text style={styles.title}>몸무게: {this.state.weight}Kg</Text>
-            <Text style={styles.title}>혈압: {this.state.BP}mmHg</Text>
-            <Text style={styles.title}>혈당: {this.state.BS}Kg</Text>
+            <Text style={styles.title}>몸무게: {this.props.weight}Kg</Text>
+            <Text style={styles.title}>혈압: {this.props.BP}mmHg</Text>
+            <Text style={styles.title}>혈당: {this.props.BS}Kg</Text>
           </View>
           <Text style={styles.title}>꼼꼼히 체크해요!</Text>
           <View style={styles.threeCardGroup}>
-            <Text style={styles.title}>냉온욕: {this.state.NOW}회</Text>
-            <Text style={styles.title}>각탕: {this.state.GT}분</Text>
-            <Text style={styles.title}>풍욕: {this.state.PW}분</Text>
+            <Text style={styles.title}>냉온욕: {this.props.NOW}회</Text>
+            <Text style={styles.title}>각탕: {this.props.GT}분</Text>
+            <Text style={styles.title}>풍욕: {this.props.PW}분</Text>
           </View>
           <View style={styles.threeCardGroup}>
-            <Text style={styles.title}>앱솜관장: {this.state.EG}회</Text>
-            <Text style={styles.title}>커피관장: {this.state.CG}회</Text>
-            <Text style={styles.title}>맹물관장: {this.state.WG}회</Text>
+            <Text style={styles.title}>앱솜관장: {this.props.EG}회</Text>
+            <Text style={styles.title}>커피관장: {this.props.CG}회</Text>
+            <Text style={styles.title}>맹물관장: {this.props.WG}회</Text>
           </View>
           <View style={styles.threeCardGroup}>
-            <Text style={styles.title}>발목펌프: {this.state.BPP}회</Text>
-            <Text style={styles.title}>합장합척: {this.state.HH}회</Text>
-            <Text style={styles.title}>등배운동: {this.state.DB}회</Text>
+            <Text style={styles.title}>발목펌프: {this.props.BPP}회</Text>
+            <Text style={styles.title}>합장합척: {this.props.HH}회</Text>
+            <Text style={styles.title}>등배운동: {this.props.DB}회</Text>
           </View>
           <View style={styles.threeCardGroup}>
-            <Text style={styles.title}>붕어운동: {this.state.BB}회</Text>
-            <Text style={styles.title}>모관운동: {this.state.MM}회</Text>
+            <Text style={styles.title}>붕어운동: {this.props.BB}회</Text>
+            <Text style={styles.title}>모관운동: {this.props.MM}회</Text>
           </View>
           <Text style={styles.title}>식단</Text>
           <View style={styles.threeCardGroup}>
-            <Text style={styles.title}>니시차: {this.state.Nisi}포</Text>
-            <Text style={styles.title}>된장차: {this.state.Doenjang}포</Text>
-            <Text style={styles.title}>장미소: {this.state.Miso}포</Text>
+            <Text style={styles.title}>니시차: {this.props.Nisi}포</Text>
+            <Text style={styles.title}>된장차: {this.props.Doenjang}포</Text>
+            <Text style={styles.title}>장미소: {this.props.Miso}포</Text>
           </View>
           <View style={styles.threeCardGroup}>
-            <Text style={styles.title}>키토산: {this.state.Chitosan}알</Text>
-            <Text style={styles.title}>파워플러스: {this.state.Power}포</Text>
-            <Text style={styles.title}>블로썸: {this.state.Blossom}알</Text>
+            <Text style={styles.title}>키토산: {this.props.Chitosan}알</Text>
+            <Text style={styles.title}>파워플러스: {this.props.Power}포</Text>
+            <Text style={styles.title}>블로썸: {this.props.Blossom}알</Text>
           </View>
           <View style={styles.threeCardGroup}>
-            <Text style={styles.title}>사탕: {this.state.Nisi}알</Text>
-            <Text style={styles.title}>다비움: {this.state.Doenjang}통</Text>
-            <Text style={styles.title}>우주밥상: {this.state.Miso}포</Text>
+            <Text style={styles.title}>사탕: {this.props.Candy}알</Text>
+            <Text style={styles.title}>다비움: {this.props.Biwoom}통</Text>
+            <Text style={styles.title}>우주밥상: {this.props.Space}포</Text>
           </View>
           <Text>현미밥, 야채 - 추가하기 눌러서 항목 추가</Text>
-          <Text style={styles.title}>오늘 하루: {this.state.memo}</Text>
+          <Text style={styles.title}>오늘 하루: </Text>
+          <Text style={styles.title}>{this.props.memo}</Text>
         </View>
       </ScrollView>
     );

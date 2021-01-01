@@ -100,8 +100,8 @@ class DailyTodo extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      date: this.props.route.params.date, 
-      dateString: this.props.route.params.dateString, 
+      pressedDate: this.props.route.params.pressedDate, 
+      pressedDateString: this.props.route.params.pressedDateString, 
       cycle: this.props.route.params.cycle, 
       jang: this.props.route.params.jang, 
       goal: this.props.route.params.goal, 
@@ -250,7 +250,7 @@ class DailyTodo extends Component {
         console.log("success opening diaryDB in newevent")
 
         DB.transaction((tx) => {
-          tx.executeSql(`INSERT OR REPLACE INTO todo (date, weight, bPressure, bSugar, chBath, fBath, wBath, eAbsom, eCoffee, eWater, exer1, exer2, exer3, exer4, exer5, mNisi, mDoenjang, mMiso, mChitosan, mPower, mBlossom, mCandy, mBiwoom, mSpace, memo) VALUES ("${this.state.date}", ${this.state.weight}, "${this.state.BP}", ${this.state.BS}, ${this.state.NOW}, ${this.state.GT}, ${this.state.PW}, ${this.state.EG}, ${this.state.CG}, ${this.state.WG}, ${this.state.BPP}, ${this.state.HH}, ${this.state.DB}, ${this.state.BB}, ${this.state.MM}, ${this.state.Nisi}, ${this.state.Doenjang}, ${this.state.Miso}, ${this.state.Chitosan}, ${this.state.Power}, ${this.state.Blossom}, ${this.state.Candy}, ${this.state.Biwoom}, ${this.state.Space}, "${this.state.memo}")`)
+          tx.executeSql(`INSERT OR REPLACE INTO todo (date, weight, bPressure, bSugar, chBath, fBath, wBath, eAbsom, eCoffee, eWater, exer1, exer2, exer3, exer4, exer5, mNisi, mDoenjang, mMiso, mChitosan, mPower, mBlossom, mCandy, mBiwoom, mSpace, memo) VALUES ("${this.state.pressedDate}", ${this.state.weight}, "${this.state.BP}", ${this.state.BS}, ${this.state.NOW}, ${this.state.GT}, ${this.state.PW}, ${this.state.EG}, ${this.state.CG}, ${this.state.WG}, ${this.state.BPP}, ${this.state.HH}, ${this.state.DB}, ${this.state.BB}, ${this.state.MM}, ${this.state.Nisi}, ${this.state.Doenjang}, ${this.state.Miso}, ${this.state.Chitosan}, ${this.state.Power}, ${this.state.Blossom}, ${this.state.Candy}, ${this.state.Biwoom}, ${this.state.Space}, "${this.state.memo}")`)
           .then(() => {
             console.log('insert transaction done');
           })
@@ -294,8 +294,8 @@ class DailyTodo extends Component {
         </Modal>
         <View style={styles.contenttext}>
           <View style={styles.date}>
-            <Text style={styles.textBold}>{this.state.date}</Text>
-            <Text style={styles.textBold}>{this.state.dateString}</Text>
+            <Text style={styles.textBold}>{this.state.pressedDate}</Text>
+            <Text style={styles.textBold}>{this.state.pressedDateString}</Text>
           </View>
           <View style={styles.goal}>
             <Text style={styles.text}>{this.state.goal}</Text>

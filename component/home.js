@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { SafeAreaView, StyleSheet, ScrollView, View, Text, Modal, TouchableHighlight } from 'react-native';
-import { Calendar, CalendarList } from 'react-native-calendars';
-import { Button, Input } from 'react-native-elements';
+import { SafeAreaView, StyleSheet, View, Image, Linking, ToastAndroid } from 'react-native';
+import { Calendar } from 'react-native-calendars';
+import { Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/Feather';
 import TodaySummary from './todaysummary.js';
 
@@ -12,27 +12,20 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  button: {
-    alignSelf: 'stretch',
-    marginRight: 7,
-    marginTop: 10,
-    marginBottom: 10
-  },
   calendar: {
     height: 380,
     marginTop: 10
-  },
-  content: {
-    borderTopWidth: 4,
-    borderColor: "#F5F5F5",
-    backgroundColor: "#FFFFFF",
-    flex: 1,
   },
   iconContainer: {
     flexDirection: "row",
     justifyContent: "space-evenly",
     paddingRight: 10,
     paddingLeft: 10
+  },
+  imageicon: {
+    paddingTop: 8,
+    width: 19,
+    height: 23,
   }
 });
 
@@ -637,6 +630,207 @@ class Home extends Component {
     });
   };
 
+  exportPress = async () => {
+    SQLite.DEBUG(true);
+    SQLite.enablePromise(true);
+
+    var contentText = "" + this.state.pressedDate;
+
+    await SQLite.openDatabase(
+    {
+        name: 'diaryDB.db',
+        createFromLocation: 1,
+    },
+    (DB) => {
+      console.log("success opening diaryDB in newevent");
+
+      var jang = "X";
+      var pressedDateString = '';
+      
+      DB.transaction((tx) => {
+        let selectQuery = `SELECT type, startDate, goal, goalWeight, goalBPressure, goalBSugar FROM event where startdate <= "${moment(this.state.pressedDate).add(1, 'days').format("YYYY-MM-DD")}" and enddate >= "${this.state.pressedDate}"`
+        
+        tx.executeSql(selectQuery, [], (tx, results) => {
+          const rows = results.rows.item(0);
+          if (rows != undefined) {
+            const type = rows.type;
+            const startdate = rows.startDate;
+            const diff = moment(this.state.pressedDate).diff(moment(startdate), 'days');
+
+            switch(type) {
+              case 1:
+                if(diff == -1 ){
+                  jang = "O";
+                }
+                if(diff < 10) {
+                  pressedDateString = '본단식 '+(diff+1)+'일 차';
+                  if(diff == 4) jang = "O";
+                }
+                else if (diff < 20) {
+                  pressedDateString = '회복식 '+(diff-9)+'일 차';
+                  if(diff % 5 == 1) jang = "O";
+                }
+                else if (diff < 47) {
+                  pressedDateString = '조절식 '+(diff-19)+'일 차';
+                  if(diff % 5 == 1) jang = "O";
+                }
+                else if (diff == 47) {
+                  pressedDateString = '마무리 단식ㆍ본단식';
+                }
+                else if (diff == 48) {
+                  pressedDateString = '마무리 단식ㆍ회복식';
+                }
+                else {
+                  pressedDateString = '마무리 단식ㆍ조절식';
+                }
+                break;
+
+              case 2:
+                if(diff == -1 ){
+                  jang = "O";
+                }
+                if(diff < 14) {
+                  pressedDateString = '본단식 '+(diff+1)+'일 차';
+                  if(diff == 4) jang = "O";
+                }
+                else if (diff < 24) {
+                  pressedDateString = '회복식 '+(diff-13)+'일 차';
+                  if(diff % 5 == 0) jang = "O";
+                }
+                else if (diff < 51)  {
+                  pressedDateString = '조절식 '+(diff-23)+'일 차';
+                  if(diff % 5 == 0) jang = "O";
+                }
+                else if (diff == 51) {
+                  pressedDateString = '마무리 단식ㆍ본단식';
+                }
+                else if (diff == 52) {
+                  pressedDateString = '마무리 단식ㆍ회복식';
+                }
+                else {
+                  pressedDateString = '마무리 단식ㆍ조절식';
+                }
+                break;
+
+              case 3:
+                if(diff == -1 ){
+                  jang = "O";
+                }
+                if(diff < 21) {
+                  pressedDateString = '본단식 '+(diff+1)+'일 차';
+                  if(diff == 4) jang = "O";
+                }
+                else if (diff < 31) {
+                  pressedDateString = '회복식 '+(diff-20)+'일 차';
+                  if(diff % 5 == 2) jang = "O";
+                }
+                else if (diff < 58)  {
+                  pressedDateString = '조절식 '+(diff-30)+'일 차';
+                  if(diff % 5 == 2) jang = "O";
+                }
+                else if (diff == 58) {
+                  pressedDateString = '마무리 단식ㆍ본단식';
+                }
+                else if (diff == 59) {
+                  pressedDateString = '마무리 단식ㆍ회복식';
+                }
+                else {
+                  pressedDateString = '마무리 단식ㆍ조절식';
+                }
+                break;
+
+              case 4:
+                if(diff == -1 ){
+                  jang = "O";
+                }
+                if(diff < 30) {
+                  pressedDateString = '본단식 '+(diff+1)+'일 차';
+                  if(diff == 4) jang = "O";
+                }
+                else if (diff < 50) {
+                  pressedDateString = '회복식 '+(diff-29)+'일 차';
+                  if(diff % 5 == 1) jang = "O";
+                }
+                else if (diff < 77)  {
+                  pressedDateString = '조절식 '+(diff-49)+'일 차';
+                  if(diff % 5 == 1) jang = "O";
+                }
+                else if (diff == 77) {
+                  pressedDateString = '마무리 단식ㆍ본단식';
+                }
+                else if (diff == 78) {
+                  pressedDateString = '마무리 단식ㆍ회복식';
+                }
+                else {
+                  pressedDateString = '마무리 단식ㆍ조절식';
+                }
+                break;
+            }
+
+            let weight = (rows.goalWeight!=0 ? "- 몸무게 : "+rows.goalWeight + "Kg\n" : "");
+            let BP = (rows.goalBPressure!="0/0" ? "- 혈압 : "+rows.goalBPressure + "mmHg\n" : "");
+            let BS = (rows.goalBSugar!=0 ?  "- 혈당 : "+rows.goalBSuga + "mg/dL\n" : "");
+            contentText = contentText + " / " + pressedDateString + "\n\n🏆 목표\n" +rows.goal+"\n" + weight + BP + BS;
+          }
+          selectQuery = `SELECT * FROM todo where date = "${this.state.pressedDate}"`;
+
+          tx.executeSql(selectQuery, [], (tx, results) => {
+            const todo = results.rows.item(0);
+
+            if (todo == undefined){
+              ToastAndroid.show("먼저 기록을 입력해주세요. ", ToastAndroid.SHORT);
+            }
+            else {
+              let weight = (todo.weight!=0 ? "- 몸무게 : "+todo.weight + "Kg\n" : "");
+              let BP = (todo.bPressure!="0/0" ? "- 혈압 : "+todo.bPressure + "mmHg\n" : "");
+              let BS = (todo.bSugar!=0 ?  "- 혈당 : "+todo.bSugar + "mg/dL\n" : "");
+
+              let Nisi = (todo.mNisi!=0 ? "- 니시차 : "+todo.mNisi + "포\n" : "");
+              let Doenjang = (todo.mDoenjang!=0 ? "- 된장차 : "+todo.mDoenjang + "포\n" : "");
+              let Miso = (todo.mMiso!=0 ? "- 장미소 : "+todo.mMiso + "포\n" : "");
+              let Space = (todo.mSpace!=0 ? "- 우주밥상 : "+todo.mSpace + "포\n" : "");
+              let Chitosan = (todo.mChitosan!=0 ? "- 키토산 : "+todo.mChitosan + "알\n" : "");
+              let Power = (todo.mPower!=0 ? "- 파워플러스 : "+todo.mPower + "포\n" : "");
+              let Blossom = (todo.mBlossom!=0 ? "- 블로썸 : "+todo.mBlossom + "알\n" : "");
+              let Candy = (todo.mCandy!=0 ? "- 사탕 : "+todo.mCandy + "알\n" : "");
+              let Biwoom = (todo.mBiwoom!=0 ? "- 다비움 : "+todo.mBiwoom + "통\n" : "");
+
+              let NOW = (todo.chBath!=0 ? "- 냉온욕 : "+todo.chBath + "회\n" : "");
+              let GT = (todo.fBath!=0 ? "- 각탕 : "+todo.fBath + "분\n" : "");
+              let PW = (todo.wBath!=0 ? "- 풍욕 : "+todo.wBath + "분\n" : "");
+              let EG = (todo.eAbsom!=0 ? "- 앱솜관장 : "+todo.eAbsom + "회\n" : "");
+              let CG = (todo.eCoffee!=0 ? "- 커피관장 : "+todo.eCoffee + "회\n" : "");
+              let WG = (todo.eWater!=0 ? "- 맹물관장 : "+todo.eWater + "회\n" : "");
+              let BPP = (todo.exer1!=0 ? "- 발목펌프 : "+todo.exer1 + "회\n" : "");
+              let HH = (todo.exer2!=0 ? "- 합장합척 : "+todo.exer2 + "회\n" : "");
+              let DB = (todo.exer3!=0 ? "- 등배운동 : "+todo.exer3 + "회\n" : "");
+              let BB = (todo.exer4!=0 ? "- 붕어운동 : "+todo.exer4 + "회\n" : "");
+              let MM = (todo.exer5!=0 ? "- 모관운동 : "+todo.exer5 + "회\n" : "");
+
+              let memo = (todo.memo!=null ? "\n✏ 오늘의 한 마디\n" + todo.memo : '');
+
+              contentText = contentText + "\n📍 현재\n" + weight + BP + BS + 
+                "\n💊 섭취\n"+Nisi + Doenjang + Miso + Space + Chitosan + Power + Blossom + Candy + Biwoom +
+                "\n💪 운동 및 요법\n" + "- 장청소 " + jang + "\n" + NOW + GT + PW + EG + CG + WG + BPP + HH + DB + BB + MM + memo;
+              
+              try {
+                //const supported = await Linking.canOpenURL(installURL);
+                var serviceDomain = "www.bloter.net";
+                var encodedText = encodeURI(contentText);
+                var content = "bandapp://create/post?text=" + encodedText + "&route=" + serviceDomain;
+                Linking.openURL(content)
+              } catch (e) {
+                // 밴드앱 설치되지 않은 경우 구글 플레이 설치페이지로 이동
+                const installURL = "market://details?id=com.nhn.android.band";
+                Linking.openURL(installURL);
+              }
+            }
+          });
+        });
+      });
+    });
+  };
+
   //navigation settings. focus listener & top icons
   componentDidMount = () => {
     this.props.navigation.addListener( 'focus', payload => {
@@ -655,6 +849,10 @@ class Home extends Component {
       ,
       headerRight: () => 
         <View style={styles.iconContainer}>
+          <Button type="clear"
+            icon={<Image style={styles.imageicon} source={require('./www/band2.png')} />}
+            onPress={this.exportPress}
+          />
           <Button type="clear"
             icon={<Icon name={'help-circle'} size={23}/>}
             onPress={this.infoPress}

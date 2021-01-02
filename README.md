@@ -9,6 +9,7 @@
 
 * component/home.js
 <br>메인화면. Icons & Calendar & TodaySummary로 구성
+<br>TodaySummary를 naver band로 내보내기
 
   - component/dailytodo.js
 <br>Calendar에서 특정 날짜 선택(길게 누르기) 시. 해당 날짜의 DailyTodo 수정
@@ -35,9 +36,6 @@
 
     * component/(개발 전)
 <br><차트보기> 선택 시. 특정 단식 event 기간 동안의 DailyTodo 수치 추이 차트 생성
-
-  - component/(개발 전)
-<br>내보내기. calendar 하단의 TodaySummary를 내보내는 기능.
 
   - component/
 <br>checkitem.js // true/false switch
@@ -75,6 +73,3 @@
   - 단식 구간 시작(본단식 - 붉은색, 조절식 - 노란색, 회복색 - 녹색)
   - 단식 구간 끝(본단식 - 붉은색, 조절식 - 노란색, 회복색 - 녹색)
   - 마무리 단식 응원(본단식 - 붉은색, 조절식 - 노란색, 회복색 - 녹색)
-
-* 내보내기
-  - 특정 날짜의 TodaySummary 내보내기 기능

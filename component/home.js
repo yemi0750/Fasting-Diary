@@ -855,7 +855,7 @@ class Home extends Component {
           />
           <Button type="clear"
             icon={<Icon name={'help-circle'} size={23}/>}
-            onPress={this.infoPress}
+            onPress={() => this.props.navigation.navigate('InfoTab')}
           />
           <Button type="clear"
             icon={<Icon name={'plus'} size={23}/>}

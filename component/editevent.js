@@ -336,17 +336,17 @@ class EditEvent extends Component {
           />
           <Text style={styles.modalText}>현재 수치 및 목표 수치</Text>
           <View style={styles.threeCardGroup}>
-            <NumericItem name={'현재 몸무게'} style={styles.threeCard} todo={this.getCW} item ={this.state.startWeight}/>
+            <NumericItem name={'현재 체중'} style={styles.threeCard} todo={this.getCW} item ={this.state.startWeight}/>
             <NumericItemDouble name={'현재 혈압'} style={styles.threeCard} todo={this.getCBP} item ={this.state.startBPressure}/>
             <NumericItem name={'현재 혈당'} style={styles.threeCard} todo={this.getCBS} item ={this.state.startBSugar}/>
           </View>
           <View style={styles.threeCardGroup}>
-            <NumericItem name={'목표 몸무게'} style={styles.threeCard} todo={this.getGW} item ={this.state.goalWeight}/>
+            <NumericItem name={'목표 체중'} style={styles.threeCard} todo={this.getGW} item ={this.state.goalWeight}/>
             <NumericItemDouble name={'목표 혈압'} style={styles.threeCard} todo={this.getGBP} item ={this.state.goalBPressure}/>
             <NumericItem name={'목표 혈당'} style={styles.threeCard} todo={this.getGBS} item ={this.state.goalBSugar}/>
           </View>
           <View style={styles.threeCardGroup}>
-            <NumericItem name={'최종 몸무게'} style={styles.threeCard} todo={this.getEW} item ={this.state.endWeight}/>
+            <NumericItem name={'최종 체중'} style={styles.threeCard} todo={this.getEW} item ={this.state.endWeight}/>
             <NumericItemDouble name={'최종 혈압'} style={styles.threeCard} todo={this.getEBP} item ={this.state.endBPressure}/>
             <NumericItem name={'최종 혈당'} style={styles.threeCard} todo={this.getEBS} item ={this.state.endBSugar}/>
           </View>

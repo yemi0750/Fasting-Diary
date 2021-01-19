@@ -300,13 +300,30 @@ class DailyTodo extends Component {
           <View style={styles.goal}>
             <Text style={styles.text}>{this.state.goal}</Text>
           </View>
-          <Text style={styles.title}>오늘 나의 수치는?</Text>
+          <Text style={styles.title}>📍 현재</Text>
           <View style={styles.threeCardGroup}>
-            <NumericItem name={'몸무게'} style={styles.threeCard} todo={this.getWeight} item={this.state.weight}/>
+            <NumericItem name={'체중'} style={styles.threeCard} todo={this.getWeight} item={this.state.weight}/>
             <NumericItemDouble name={'혈압'} style={styles.threeCard}  todo={this.getBP} item={this.state.BP}/>
             <NumericItem name={'혈당'} style={styles.threeCard} todo={this.getBS} item={this.state.BS}/>
           </View>
-          <Text style={styles.title}>꼼꼼히 체크해요!</Text>
+          <Text style={styles.title}>💊 섭취</Text>
+          <View style={styles.threeCardGroup}>
+            <NumericItem name={'니시차'} style={styles.threeCard} todo={this.getNisi} item={this.state.Nisi}/>
+            <NumericItem name={'된장차'} style={styles.threeCard}  todo={this.getDoenjang} item={this.state.Doenjang}/>
+            <NumericItem name={'장미소'} style={styles.threeCard} todo={this.getMiso} item={this.state.Miso}/>
+          </View>
+          <View style={styles.threeCardGroup}>
+            <NumericItem name={'키토산'} style={styles.threeCard} todo={this.getChitosan} item={this.state.Chitosan}/>
+            <NumericItem name={'파워플러스'} style={styles.threeCard}  todo={this.getPower} item={this.state.Power}/>
+            <NumericItem name={'블로썸'} style={styles.threeCard} todo={this.getBlossom} item={this.state.Blossom}/>
+          </View>
+          <View style={styles.threeCardGroup}>
+            <NumericItem name={'사탕'} style={styles.threeCard} todo={this.getCandy} item={this.state.Candy}/>
+            <NumericItem name={'다비움'} style={styles.threeCard}  todo={this.getBiwoom} item={this.state.Biwoom}/>
+            <NumericItem name={'우주밥상'} style={styles.threeCard} todo={this.getSpace} item={this.state.Space}/>
+          </View>
+          <Text>현미밥, 야채 - 추가하기 눌러서 항목 추가</Text>
+          <Text style={styles.title}>💪 운동 및 요법</Text>
           <View style={styles.threeCardGroup}>
             <CountItem name={'냉온욕'} style={styles.threeCard} count={this.getNOW} item={this.state.NOW} />
             <CountItem name={'각탕'} style={styles.threeCard} count={this.getGT} item={this.state.GT} />
@@ -327,24 +344,7 @@ class DailyTodo extends Component {
             <CountItem name={'모관운동'} style={styles.threeCard} count={this.getMM} item={this.state.MM} />
             <CountItem name={'뿅'} style={styles.threeCard} count={this.gettemp} item={this.state.temp} />
           </View>
-          <Text style={styles.title}>식단</Text>
-          <View style={styles.threeCardGroup}>
-            <NumericItem name={'니시차'} style={styles.threeCard} todo={this.getNisi} item={this.state.Nisi}/>
-            <NumericItem name={'된장차'} style={styles.threeCard}  todo={this.getDoenjang} item={this.state.Doenjang}/>
-            <NumericItem name={'장미소'} style={styles.threeCard} todo={this.getMiso} item={this.state.Miso}/>
-          </View>
-          <View style={styles.threeCardGroup}>
-            <NumericItem name={'키토산'} style={styles.threeCard} todo={this.getChitosan} item={this.state.Chitosan}/>
-            <NumericItem name={'파워플러스'} style={styles.threeCard}  todo={this.getPower} item={this.state.Power}/>
-            <NumericItem name={'블로썸'} style={styles.threeCard} todo={this.getBlossom} item={this.state.Blossom}/>
-          </View>
-          <View style={styles.threeCardGroup}>
-            <NumericItem name={'사탕'} style={styles.threeCard} todo={this.getCandy} item={this.state.Candy}/>
-            <NumericItem name={'다비움'} style={styles.threeCard}  todo={this.getBiwoom} item={this.state.Biwoom}/>
-            <NumericItem name={'우주밥상'} style={styles.threeCard} todo={this.getSpace} item={this.state.Space}/>
-          </View>
-          <Text>현미밥, 야채 - 추가하기 눌러서 항목 추가</Text>
-          <Text style={styles.title}>오늘 하루는 어땠나요?</Text>
+          <Text style={styles.title}>✏ 오늘의 한 마디</Text>
           <MemoItem memo={this.getMemo} item={this.state.memo}/>
           <View style={styles.threeCardGroup}>
             <TouchableHighlight

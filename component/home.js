@@ -23,9 +23,9 @@ const styles = StyleSheet.create({
     paddingLeft: 10
   },
   imageicon: {
-    paddingTop: 8,
-    width: 19,
-    height: 23,
+    marginRight: 4,
+    width: 18,
+    height: 21,
   }
 });
 
@@ -240,7 +240,7 @@ class Home extends Component {
           if (rows != undefined) {
             const type = rows.type;
             const startdate = rows.startDate;
-            goal = "목표: "+"\n"+rows.goal+"\n"+"목표 수치: "+rows.goalWeight+"kg ㆍ "+rows.goalBPressure+"mmHg ㆍ "+rows.goalBSugar+"mg/dL";
+            goal = "🏆 목표\n"+rows.goal+"\n( "+rows.goalWeight+"kg ㆍ "+rows.goalBPressure+"mmHg ㆍ "+rows.goalBSugar+"mg/dL )";
             const diff = moment(this.state.pressedDate).diff(moment(startdate), 'days');
 
             switch(type) {
@@ -436,7 +436,7 @@ class Home extends Component {
           if (rows != undefined){
             const type = rows.type;
             const startdate = rows.startDate;
-            goal = "목표: "+"\n"+rows.goal+"\n"+"목표 수치: "+rows.goalWeight+"kg ㆍ "+rows.goalBPressure+"mmHg ㆍ "+rows.goalBSugar+"mg/dL";
+            goal = "🏆 목표\n"+rows.goal+"\n( "+rows.goalWeight+"kg ㆍ "+rows.goalBPressure+"mmHg ㆍ "+rows.goalBSugar+"mg/dL )";
             const diff = moment(this.state.pressedDate).diff(moment(startdate), 'days');
 
             switch(type) {
